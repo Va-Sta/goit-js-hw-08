@@ -118,13 +118,16 @@ links.forEach((link) => {
   });
 });
 
+const modal = basicLightbox.create(
+  `<img class="modal-image" src="image">`
+);
+const modal_elem = modal.element().querySelector(".modal-image");
+
 ulElem.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
     return;
   }
   //   console.log(event.target.dataset.source);
-  const modal = basicLightbox.create(
-    `<img src="${event.target.dataset.source}">`
-  );
+  modal_elem.src = event.target.dataset.source;
   modal.show();
 });
