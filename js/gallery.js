@@ -81,12 +81,6 @@ function imageTemplate({ preview: small, original: large, description: alt }) {
 `;
 }
 
-// let markup = "";
-// images.forEach((obj) => {
-//   markup += imageTemplate(obj);
-// });
-// ulElem.innerHTML = markup;
-
 ulElem.innerHTML = images.map(imageTemplate).join("");
 
 // var2
@@ -113,23 +107,15 @@ ulElem.innerHTML = images.map(imageTemplate).join("");
 
 // <---
 
-const links = document.querySelectorAll("a.gallery-link");
-links.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-  });
-});
-
 const modal = basicLightbox.create(
   `<img class="modal-image" src="image">`
 );
 const modal_elem = modal.element().querySelector(".modal-image");
 
 ulElem.addEventListener("click", (event) => {
-  if (event.target === event.currentTarget) {
-    return;
+  event.preventDefault();
+  if (event.target.tagName === "IMG") {
+    modal_elem.src = event.target.dataset.source;
+    modal.show();
   }
-  //   console.log(event.target.dataset.source);
-  modal_elem.src = event.target.dataset.source;
-  modal.show();
 });
