@@ -81,11 +81,13 @@ function imageTemplate({ preview: small, original: large, description: alt }) {
 `;
 }
 
-let markup = "";
-images.forEach((obj) => {
-  markup += imageTemplate(obj);
-});
-ulElem.innerHTML = markup;
+// let markup = "";
+// images.forEach((obj) => {
+//   markup += imageTemplate(obj);
+// });
+// ulElem.innerHTML = markup;
+
+ulElem.innerHTML = images.map(imageTemplate).join("");
 
 // var2
 //   const liImages = [];
